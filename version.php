@@ -24,9 +24,9 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2019071200;
-$plugin->requires  = 2018050800;
+$plugin->version   = 2018120300;
+$plugin->requires  = 2018112800;
 
 $plugin->component = 'qtype_gapselect';
 $plugin->maturity  = MATURITY_STABLE;
-$plugin->release   = '3.5 (wordtable)';
+$plugin->release   = '3.6 (wordtable)';

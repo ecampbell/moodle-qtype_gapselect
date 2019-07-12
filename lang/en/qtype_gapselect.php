@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Language strings for the gap-select question type.
+ * Language strings for the gap-select question type - wordtable customisation.
  *
  * @package    qtype_gapselect
  * @copyright  2011 The Open University
