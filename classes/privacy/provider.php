@@ -15,34 +15,32 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Defines the editing form for the select missing words question type.
+ * Privacy Subsystem implementation for qtype_gapselect.
  *
  * @package    qtype_gapselect
- * @copyright  2011 The Open University
+ * @copyright  2018 Andrew Nicols <andrew@nicols.co.uk>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace qtype_gapselect\privacy;
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->dirroot . '/question/type/gapselect/edit_form_base.php');
-
-
 /**
- * Select from drop down list question editing form definition.
+ * Privacy Subsystem for qtype_gapselect implementing null_provider.
  *
- * @copyright  2011 The Open University
+ * @copyright  2018 Andrew Nicols <andrew@nicols.co.uk>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class qtype_gapselect_edit_form extends qtype_gapselect_edit_form_base {
-    /** @var array HTML tags allowed in answers (choices). */
-    protected $allowedhtmltags = array();
+class provider implements \core_privacy\local\metadata\null_provider {
 
-    public function qtype() {
-        return 'gapselect';
-    }
-
-    function get_maximum_choice_group_number() {
-        return 20;
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return  string
+     */
+    public static function get_reason() : string {
+        return 'privacy:metadata';
     }
 }
