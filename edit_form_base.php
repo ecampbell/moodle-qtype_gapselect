@@ -32,7 +32,9 @@ defined('MOODLE_INTERNAL') || die();
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_gapselect_edit_form_base extends question_edit_form {
-    /** @var int maximum number of different groups of drag items there can be in a question. */
+    /**
+     * Maximum number of different groups of drag items there can be in a question.
+     */
     const MAX_GROUPS = 8;
 
     /** @var array of HTML tags allowed in choices / drag boxes. */
@@ -42,7 +44,8 @@ class qtype_gapselect_edit_form_base extends question_edit_form {
         'b',
         'i',
         'em',
-        'strong'
+        'strong',
+        'span',
     );
 
     /** @var string regex to match HTML open tags. */
@@ -57,7 +60,7 @@ class qtype_gapselect_edit_form_base extends question_edit_form {
     /**
      * Vaidate some input to make sure it does not contain any tags other than
      * $this->allowedhtmltags.
-     * @param unknown_type $text the input to validate.
+     * @param string $text the input to validate.
      * @return string any validation errors.
      */
     protected function get_illegal_tag_error($text) {
@@ -82,6 +85,12 @@ class qtype_gapselect_edit_form_base extends question_edit_form {
         return '';
     }
 
+    /**
+     * Returns a message indicating what tags are allowed.
+     *
+     * @param string $badtag The disallowed tag that was supplied
+     * @return string Message indicating what tags are allowed
+     */
     private function allowed_tags_message($badtag) {
         $a = new stdClass();
         $a->tag = htmlspecialchars($badtag);
@@ -93,6 +102,12 @@ class qtype_gapselect_edit_form_base extends question_edit_form {
         }
     }
 
+    /**
+     * Returns a prinatble list of allowed HTML tags.
+     *
+     * @param array $allowedhtmltags An array for tag strings that are allowed
+     * @return string A printable list of tags
+     */
     private function get_list_of_printable_allowed_tags($allowedhtmltags) {
         $allowedtaglist = array();
         foreach ($allowedhtmltags as $htmltag) {
@@ -115,6 +130,11 @@ class qtype_gapselect_edit_form_base extends question_edit_form {
         $this->add_interactive_settings(true, true);
     }
 
+    /**
+     * Defines form elements for answer choices.
+     *
+     * @param object $mform The Moodle form object being built
+     */
     protected function definition_answer_choice(&$mform) {
         $mform->addElement('header', 'choicehdr', get_string('choices', 'qtype_gapselect'));
         $mform->setExpanded('choicehdr', 1);
@@ -147,6 +167,12 @@ class qtype_gapselect_edit_form_base extends question_edit_form {
                 get_string('addmorechoiceblanks', 'qtype_gapselect'), true);
     }
 
+    /**
+     * Creates an array with elements for a choice group.
+     *
+     * @param object $mform The Moodle form we are working with
+     * @return array Array for form elements
+     */
     protected function choice_group($mform) {
         $options = array();
         for ($i = 1; $i <= self::MAX_GROUPS; $i += 1) {
@@ -160,6 +186,11 @@ class qtype_gapselect_edit_form_base extends question_edit_form {
         return $grouparray;
     }
 
+    /**
+     * Returns an array for form repeat options.
+     *
+     * @return array Array of repeate options
+     */
     protected function repeated_options() {
         $repeatedoptions = array();
         $repeatedoptions['choicegroup']['default'] = '1';
@@ -189,8 +220,6 @@ class qtype_gapselect_edit_form_base extends question_edit_form {
     }
 
     protected function data_preprocessing_choice($question, $answer, $key) {
-        // See comment in data_preprocessing_answers.
-        unset($this->_form->_defaultValues['choices[$key][choicegroup]']);
         $question->choices[$key]['answer'] = $answer->answer;
         $question->choices[$key]['choicegroup'] = $answer->feedback;
         return $question;
@@ -218,6 +247,13 @@ class qtype_gapselect_edit_form_base extends question_edit_form {
         return $errors;
     }
 
+    /**
+     * Finds errors in question slots.
+     *
+     * @param string $questiontext The question text
+     * @param array $choices Question choices
+     * @return string|bool Error message or false if no errors
+     */
     private function validate_slots($questiontext, $choices) {
         $error = 'Please check the Question text: ';
         if (!$questiontext) {

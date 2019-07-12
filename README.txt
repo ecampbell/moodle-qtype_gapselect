@@ -9,8 +9,10 @@ The question type was created by Jamie Pratt (http://jamiep.org/) paid for by
 the Open University (http://www.open.ac.uk/).
 
 
-This version of this question type is compatible with Moodle 2.5+. There are
+This version of this question type is compatible with Moodle 3.1+. There are
 other versions available for Moodle 2.3+.
+Note that this is a customisation of the built-in 'Select missing words' question type,
+with support for importing and exporting from and to Word tables using the WordTable plugin.
 
 To install using git, type this command in the root of your Moodle install
     git clone git@github.com:moodleou/moodle-qtype_gapselect.git question/type/gapselect

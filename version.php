@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version information for the select missing words question type.
+ * Version information for the select missing words question type - wordtable customisation.
  *
  * @package   qtype_gapselect
  * @copyright 2011 The Open University
@@ -24,11 +24,9 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2015120800;
-$plugin->requires  = 2013101800;
-$plugin->cron      = 0;
+$plugin->version   = 2019071200;
+$plugin->requires  = 2018050800;
+
 $plugin->component = 'qtype_gapselect';
 $plugin->maturity  = MATURITY_STABLE;
-$plugin->release   = '1.7wt for Moodle 2.6+';
-
-$plugin->outestssufficient = true;
+$plugin->release   = '1.7 (wordtable)';
