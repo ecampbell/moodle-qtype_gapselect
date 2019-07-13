@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Question type class for the select missing words question type.
+ * Question type class for the select missing words question type - wordtable customisation.
  *
  * @package    qtype_gapselect
  * @copyright  2011 The Open University
@@ -125,7 +125,6 @@ class qtype_gapselect extends qtype_gapselect_base {
      * cf. https://moodle.org/plugins/pluginversions.php?plugin=qformat_htmltable
      * Just call the corresponding XML functions
      */
-
     /**
      * Export to WordTable format
      *
@@ -139,7 +138,6 @@ class qtype_gapselect extends qtype_gapselect_base {
     public function export_to_wordtable($question, qformat_xml $format, $extra=null) {
         return $this->export_to_xml($question, $format, $extra);
     }
-
     /**
      * Import from WordTable format
      *
